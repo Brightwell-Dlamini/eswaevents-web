@@ -11,20 +11,7 @@ import Link from 'next/link';
 import { memo } from 'react';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-
-type EventStatus = 'draft' | 'published' | 'completed' | 'canceled';
-
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  status: EventStatus;
-  attendees: number;
-  revenue: number;
-  image?: string;
-  ticketsSold: number;
-  capacity: number;
-}
+import { EventStatus, Event } from '@/types/event';
 
 type EventCardVariant = 'compact' | 'detailed';
 

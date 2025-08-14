@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Spinner } from '@/components/ui/spinner';
 import { useAuth } from '@/app/contexts/auth-context';
 
-export default function GoogleCallbackPage() {
+function GoogleCallbackContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const error = searchParams.get('error');
@@ -30,5 +30,22 @@ export default function GoogleCallbackPage() {
         <p className="mt-4 text-lg">Signing in with Google...</p>
       </div>
     </div>
+  );
+}
+
+export default function GoogleCallbackPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <Spinner className="h-12 w-12 mx-auto" />
+            <p className="mt-4 text-lg">Loading authentication...</p>
+          </div>
+        </div>
+      }
+    >
+      <GoogleCallbackContent />
+    </Suspense>
   );
 }

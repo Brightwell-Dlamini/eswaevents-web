@@ -2,7 +2,7 @@
 export type EventStatus = 'draft' | 'published' | 'completed' | 'canceled';
 
 export interface Event {
-    id: string;
+    id: number;
     title: string;
     date: string;
     location: string;
@@ -16,7 +16,7 @@ export interface Event {
 
 export const mockEvents: Event[] = [
     {
-        id: '1',
+        id: 1,
         title: 'Tech Conference 2023',
         date: '2023-11-15T09:00:00',
         location: 'Convention Center, San Francisco',
@@ -28,7 +28,7 @@ export const mockEvents: Event[] = [
         ticketsSold: 150,
     },
     {
-        id: '2',
+        id: 3,
         title: 'Music Festival',
         date: '2023-12-20T14:00:00',
         location: 'Central Park, New York',
@@ -40,7 +40,7 @@ export const mockEvents: Event[] = [
         ticketsSold: 150,
     },
     {
-        id: '3',
+        id: 3,
         title: 'Art Exhibition',
         date: '2023-10-05T10:00:00',
         location: 'Modern Art Museum, Chicago',
@@ -52,7 +52,7 @@ export const mockEvents: Event[] = [
         ticketsSold: 150,
     },
     {
-        id: '4',
+        id: 4,
         title: 'Startup Pitch Night',
         date: '2023-09-28T18:30:00',
         location: 'Innovation Hub, Austin',
@@ -64,7 +64,7 @@ export const mockEvents: Event[] = [
         ticketsSold: 150,
     },
     {
-        id: '5',
+        id: 5,
         title: 'Charity Gala',
         date: '2024-02-14T19:00:00',
         location: 'Grand Hotel, Miami',
@@ -76,7 +76,7 @@ export const mockEvents: Event[] = [
         ticketsSold: 150,
     },
     {
-        id: '6',
+        id: 6,
         title: 'Canceled Workshop',
         date: '2023-08-10T11:00:00',
         location: 'Co-working Space, Seattle',
