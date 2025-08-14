@@ -1,6 +1,6 @@
 // "extends": "../../tsconfig.json",
 {
-  "types": ["node", "next"],
+  "types": ["node", "next", "@types/minimatch"],
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
