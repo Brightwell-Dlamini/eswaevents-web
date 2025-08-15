@@ -13,8 +13,9 @@ import {
 } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Navbar from '@/components/landing/Navbar';
+
 import Footer from '@/components/landing/Footer';
+import Navbar from '@/components/landing/Navbar';
 // You'll need to create this
 
 const ContactPage = () => {

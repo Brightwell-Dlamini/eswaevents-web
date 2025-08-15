@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import AuthHeader from '@/components/landing/AuthHeader';
 import Footer from '@/components/landing/Footer';
-import { useAuth } from '@/app/contexts/auth-context';
+import { useAuth } from '@/contexts/auth-context';
 import { CheckIcon } from 'lucide-react';
 import { GoogleButton } from '@/components/auth/GoogleButton';
 

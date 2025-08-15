@@ -3,7 +3,7 @@
 import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Spinner } from '@/components/ui/spinner';
-import { useAuth } from '@/app/contexts/auth-context';
+import { useAuth } from '@/contexts/auth-context';
 
 function GoogleCallbackContent() {
   const searchParams = useSearchParams();

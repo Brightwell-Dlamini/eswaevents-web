@@ -16,8 +16,9 @@ import {
   LockClosedIcon,
   GlobeAltIcon,
 } from '@heroicons/react/24/outline';
-import Navbar from '@/components/landing/Navbar';
+
 import Footer from '@/components/landing/Footer';
+import Navbar from '@/components/landing/Navbar';
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -119,7 +120,6 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
-
       <main>
         {/* Profile Header */}
         <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-16">
