@@ -11,7 +11,7 @@ interface EventCardProps {
 export const EventCard = ({ event }: EventCardProps) => {
   return (
     <article className="group relative overflow-hidden rounded-lg shadow-lg bg-white dark:bg-gray-800 h-full">
-      <div className="relative h-30">
+      <div className="relative h-24">
         <Image
           src={event.image}
           alt={`${event.name} promotional image`}
@@ -33,7 +33,7 @@ export const EventCard = ({ event }: EventCardProps) => {
       </div>
 
       <div className="p-3">
-        <div className="flex justify-between items-start mb-3">
+        <div className="flex justify-between items-start mb-2">
           <div>
             <h3 className="text-sm font-bold text-gray-900 dark:text-white">
               {event.name}

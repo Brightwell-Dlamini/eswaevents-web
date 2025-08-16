@@ -14,12 +14,12 @@ export const ScrollIndicator = () => {
         whileHover={{ scale: 1.1 }}
         aria-label="Scroll down indicator"
       >
-        <div className="flex items-end h-6 sm:h-8 gap-2">
+        <div className="flex items-end h-6 sm:h-8 gap-1">
           {[2, 4, 6, 8, 6, 4, 2].map((height, i) => (
             <motion.div
               key={i}
               animate={{
-                height: [`${height}px`, `${height + 4}px`, `${height}px`],
+                height: [`${height}px`, `${height + 6}px`, `${height}px`],
                 opacity: [0.6, 1, 0.6],
               }}
               transition={{

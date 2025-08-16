@@ -14,7 +14,7 @@ export const HeroTextSection = () => {
   }, []);
 
   return (
-    <div className="w-full text-center my-4">
+    <div className="w-full text-center mt-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
