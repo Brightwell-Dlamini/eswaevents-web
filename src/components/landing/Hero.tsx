@@ -37,7 +37,7 @@ export const Hero = () => {
   if (!mounted) return null;
 
   return (
-    <section className="relative overflow-hidden h-[100vh]">
+    <section className="relative overflow-hidden h-[80vh] sm:h-[100vh]">
       <BackgroundCarousel />
       <div className="absolute inset-0 z-0 bg-black/20" />
 

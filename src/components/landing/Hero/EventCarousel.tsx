@@ -196,27 +196,36 @@ export const EventsCarousel = () => {
         </div>
       </div>
 
-      {/* Mobile layout - horizontal scroll with 2 columns */}
+      {/* Mobile layout - horizontal scroll with 3 columns */}
       <div className="sm:hidden">
         <div
           ref={scrollContainerRef}
           className="flex overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          {HeroEvents.map((event: Event, i) => (
-            <div
-              key={event.id}
-              className="flex-none w-64 mr-4"
-              style={{ scrollSnapAlign: 'start' }}
-            >
-              <div className="space-y-4">
-                <EventCard event={event} />
-                {i + 1 < HeroEvents.length && (
-                  <EventCard event={HeroEvents[i + 1]} />
-                )}
-              </div>
-            </div>
-          ))}
+          {HeroEvents.map((event: Event, i) => {
+            // Only render a new container every 3 events
+            if (i % 3 === 0) {
+              return (
+                <div
+                  key={`group-${i}`}
+                  className="flex-none w-72 mr-4" // Adjusted width to accommodate 3 cards
+                  style={{ scrollSnapAlign: 'start' }}
+                >
+                  <div className="space-y-4">
+                    <EventCard event={event} />
+                    {i + 1 < HeroEvents.length && (
+                      <EventCard event={HeroEvents[i + 1]} />
+                    )}
+                    {i + 2 < HeroEvents.length && (
+                      <EventCard event={HeroEvents[i + 2]} />
+                    )}
+                  </div>
+                </div>
+              );
+            }
+            return null;
+          })}
         </div>
       </div>
 
