@@ -6,7 +6,7 @@ export const ScrollIndicator = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.8 }}
-      className="absolute bottom-2 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-30"
+      className="absolute bottom-15 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-30"
     >
       <motion.div
         className="animate-bounce flex flex-col items-center"
