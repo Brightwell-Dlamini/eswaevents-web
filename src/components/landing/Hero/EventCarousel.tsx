@@ -1,10 +1,6 @@
-import { motion, useAnimation, PanInfo } from 'framer-motion';
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
+import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { CalendarIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
@@ -12,10 +8,6 @@ import { EventCard } from './EventCard';
 import { HeroEvents } from '@/lib/mockData';
 import { Event } from '@/types/types';
 import { formatDate } from '@/lib/utils';
-
-const VISIBLE_EVENTS_COUNT = 4;
-const AUTO_SCROLL_INTERVAL = 8000;
-const DRAG_THRESHOLD = 50;
 
 const SearchSuggestionItem = ({ event }: { event: Event }) => {
   return (
@@ -58,73 +50,14 @@ const SearchSuggestionItem = ({ event }: { event: Event }) => {
 };
 
 export const EventsCarousel = () => {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState<Event[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const controls = useAnimation();
-  const carouselRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const totalEvents = HeroEvents.length;
-  const loopThreshold = totalEvents - VISIBLE_EVENTS_COUNT;
-
-  const handleDragStart = () => setIsDragging(true);
-  const handleDragEnd = (
-    _: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
-  ) => {
-    setIsDragging(false);
-    if (info.offset.x > DRAG_THRESHOLD) {
-      handlePrev();
-    } else if (info.offset.x < -DRAG_THRESHOLD) {
-      handleNext();
-    }
-  };
-
-  const handleNext = useCallback(() => {
-    setCarouselIndex((prev) => (prev >= loopThreshold ? 0 : prev + 1));
-    controls.start({ x: -100, opacity: 0 }).then(() => {
-      controls.start({ x: 0, opacity: 1 });
-    });
-  }, [loopThreshold, controls]);
-
-  const handlePrev = useCallback(() => {
-    setCarouselIndex((prev) => (prev <= 0 ? loopThreshold : prev - 1));
-    controls.start({ x: 100, opacity: 0 }).then(() => {
-      controls.start({ x: 0, opacity: 1 });
-    });
-  }, [loopThreshold, controls]);
-
-  const getVisibleEvents = useMemo(() => {
-    const endIndex = carouselIndex + VISIBLE_EVENTS_COUNT;
-    if (endIndex > HeroEvents.length) {
-      return [
-        ...HeroEvents.slice(carouselIndex),
-        ...HeroEvents.slice(0, endIndex % HeroEvents.length),
-      ];
-    }
-    return HeroEvents.slice(carouselIndex, endIndex);
-  }, [carouselIndex]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleNext, handlePrev]);
-
-  useEffect(() => {
-    if (isDragging) return;
-    const interval = setInterval(() => {
-      handleNext();
-    }, AUTO_SCROLL_INTERVAL);
-    return () => clearInterval(interval);
-  }, [isDragging, handleNext]);
+  const hasMoreResults = suggestions.length > 5;
 
   useEffect(() => {
     if (!searchQuery.trim()) {
@@ -160,9 +93,6 @@ export const EventsCarousel = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  const visibleEvents = getVisibleEvents;
-  const hasMoreResults = suggestions.length > 5;
 
   return (
     <div className="relative w-full max-w-[90vw] mx-auto flex-grow-0 z-10">
@@ -238,100 +168,81 @@ export const EventsCarousel = () => {
           </motion.div>
         </div>
 
-        <div className="flex justify-end items-center px-4">
-          <button
-            onClick={handlePrev}
-            disabled={HeroEvents.length <= VISIBLE_EVENTS_COUNT}
-            className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 transition-all hover:scale-105"
-            aria-label="Previous events"
-          >
-            <ChevronLeftIcon
-              className="h-5 w-5 text-white"
-              aria-hidden="true"
-            />
-          </button>
-
-          <div className="flex items-center gap-4 mx-4">
+        {/* Hide navigation buttons on mobile */}
+        <div className="hidden sm:flex justify-end items-center px-4">
+          <div className="flex items-center gap-4">
             {Array.from({
-              length: Math.ceil(HeroEvents.length / VISIBLE_EVENTS_COUNT),
+              length: Math.ceil(HeroEvents.length / 4),
             }).map((_, i) => (
               <motion.button
                 key={i}
-                onClick={() => setCarouselIndex(i * VISIBLE_EVENTS_COUNT)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="relative p-1 focus:outline-none"
-                aria-label={`Go to slide ${i + 1}`}
+                aria-label={`Indicator ${i + 1}`}
               >
                 <motion.span
-                  className={`block rounded-full transition-all ${
-                    carouselIndex === i * VISIBLE_EVENTS_COUNT
-                      ? 'bg-gradient-to-r from-pink-600 to-purple-600 shadow-lg shadow-pink-500/50'
-                      : 'bg-white/30 hover:bg-white/50'
-                  }`}
+                  className={`block rounded-full transition-all bg-white/30 hover:bg-white/50`}
                   initial={false}
                   animate={{
-                    width: carouselIndex === i * VISIBLE_EVENTS_COUNT ? 16 : 12,
-                    height:
-                      carouselIndex === i * VISIBLE_EVENTS_COUNT ? 16 : 12,
+                    width: 12,
+                    height: 12,
                   }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 />
-                {carouselIndex === i * VISIBLE_EVENTS_COUNT && (
-                  <motion.span
-                    className="absolute inset-0 rounded-full border-1 border-pink-400/50"
-                    initial={{ scale: 1.3, opacity: 0 }}
-                    animate={{ scale: 1.6, opacity: 0.4 }}
-                    transition={{
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                      duration: 1.5,
-                    }}
-                  />
-                )}
               </motion.button>
             ))}
           </div>
-
-          <button
-            onClick={handleNext}
-            disabled={HeroEvents.length <= VISIBLE_EVENTS_COUNT}
-            className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-30 transition-all hover:scale-105"
-            aria-label="Next events"
-          >
-            <ChevronRightIcon
-              className="h-5 w-5 text-white"
-              aria-hidden="true"
-            />
-          </button>
         </div>
       </div>
 
-      <motion.div
-        ref={carouselRef}
-        drag="x"
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        dragConstraints={{ left: 0, right: 0 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={controls}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 px-4"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {visibleEvents.map((event: Event, i) => (
-          <motion.div
-            key={event.id}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            whileHover={{ y: -10 }}
-            className="relative"
-          >
-            <EventCard event={event} />
-          </motion.div>
-        ))}
-      </motion.div>
+      {/* Mobile layout - horizontal scroll with 2 columns */}
+      <div className="sm:hidden">
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide"
+          style={{ scrollSnapType: 'x mandatory' }}
+        >
+          {HeroEvents.map((event: Event, i) => (
+            <div
+              key={event.id}
+              className="flex-none w-64 mr-4"
+              style={{ scrollSnapAlign: 'start' }}
+            >
+              <div className="space-y-4">
+                <EventCard event={event} />
+                {i + 1 < HeroEvents.length && (
+                  <EventCard event={HeroEvents[i + 1]} />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop layout - grid carousel */}
+      <div className="hidden sm:block">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 px-4"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {HeroEvents.slice(0, 4).map((event: Event, i) => (
+            <motion.div
+              key={event.id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ y: -10 }}
+              className="relative"
+            >
+              <EventCard event={event} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

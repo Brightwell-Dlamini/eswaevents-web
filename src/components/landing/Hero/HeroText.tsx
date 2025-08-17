@@ -47,13 +47,13 @@ export const HeroText = () => {
               },
             }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+            <h1 className="text-xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4">
               <span className="bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 {textVariations[currentTextIndex].title}
               </span>
             </h1>
             <motion.p
-              className="mt-4 text-lg sm:text-xl text-gray-100 max-w-3xl mx-auto"
+              className="mt-4 text-sm sm:text-xl text-gray-100 max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.3 } }}
             >
