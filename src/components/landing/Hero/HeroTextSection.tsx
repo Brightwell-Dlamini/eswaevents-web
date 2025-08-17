@@ -57,7 +57,7 @@ export const HeroTextSection = () => {
             </motion.p>
           </motion.div>
         </AnimatePresence>
-        <div className="relative z-100">
+        <div className="relative ">
           <div className="absolute inset-x-0 mt-6 mb-4 top-1/2 h-px w-full bg-gradient-to-r from-transparent via-gray-100 to-transparent dark:via-gray-600"></div>
         </div>
       </motion.div>

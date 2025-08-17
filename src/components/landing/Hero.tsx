@@ -5,7 +5,6 @@ import { motion, useTransform, useScroll } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { BackgroundCarousel } from './Hero/BackgroundCarousel';
 import { HeroTextSection } from './Hero/HeroTextSection';
-
 import { ScrollIndicator } from './Hero/ScrollIndicator';
 import { EventsCarousel } from './Hero/EventCarousel';
 
@@ -37,19 +36,21 @@ export const Hero = () => {
   if (!mounted) return null;
 
   return (
-    <section className="relative overflow-hidden h-[80vh] sm:h-[100vh]">
+    <section className="relative overflow-hidden h-[100vh]">
       <BackgroundCarousel />
       <div className="absolute inset-0 z-0 bg-black/20" />
 
-      <motion.div
-        className="relative z-10 pt-28 pb-4 px-4 sm:px-6 lg:px-8 h-full flex flex-col"
-        style={{ y: yPos, opacity }}
-      >
-        <div className="max-w-[90vw] mx-auto flex flex-col w-full">
+      <motion.div className="relative z-10 h-full" style={{ y: yPos, opacity }}>
+        {/* Hero text section with max height and optional overflow */}
+        <div className="pt-28 px-4 sm:px-6 lg:px-8 max-w-[90vw] mx-auto h-[calc(100%-200px)]">
           <HeroTextSection />
-          <EventsCarousel />
         </div>
-        <ScrollIndicator />
+
+        {/* Bottom section fixed to bottom */}
+        <div className="absolute bottom-5 left-0 right-0 px-4 sm:px-6 lg:px-8 max-w-[90vw] mx-auto">
+          <EventsCarousel />
+          <ScrollIndicator />
+        </div>
       </motion.div>
     </section>
   );

@@ -97,7 +97,7 @@ export const EventsCarousel = () => {
   return (
     <div className="relative w-full max-w-[90vw] mx-auto flex-grow-0 z-10">
       <div className="justify-between flex items-center mb-2">
-        <h2 className="font-bold justify-start text-amber-100 text-2xl">
+        <h2 className="font-bold justify-start text-amber-100 text-lg sm:text-xl md:text-2xl">
           Trending Events
         </h2>
 
