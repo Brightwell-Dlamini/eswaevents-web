@@ -47,7 +47,7 @@ export const Hero = () => {
         </div>
 
         {/* Bottom section fixed to bottom */}
-        <div className="absolute bottom-5 left-0 right-0 px-4 sm:px-6 lg:px-8 max-w-[90vw] mx-auto">
+        <div className="absolute bottom-10 left-0 right-0 px-4 sm:px-6 lg:px-8 max-w-[90vw] mx-auto">
           <EventsCarousel />
           <ScrollIndicator />
         </div>
