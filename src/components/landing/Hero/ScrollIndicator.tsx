@@ -1,4 +1,3 @@
-// components/ScrollIndicator.tsx
 import { motion } from 'framer-motion';
 
 export const ScrollIndicator = () => {
@@ -15,7 +14,7 @@ export const ScrollIndicator = () => {
         aria-label="Scroll down indicator"
       >
         <div className="flex items-end h-6 sm:h-8 gap-1">
-          {[2, 4, 6, 8, 6, 4, 2].map((height, i) => (
+          {[4, 6, 8, 6, 4].map((height, i) => (
             <motion.div
               key={i}
               animate={{
@@ -37,9 +36,12 @@ export const ScrollIndicator = () => {
             />
           ))}
         </div>
-        <p className="text-sm sm:text-md font-bold mt-2 text-white">
+        <motion.p
+          className="text-sm sm:text-md font-bold mt-2 text-white"
+          whileHover={{ scale: 1.05 }}
+        >
           Feel the rhythm!
-        </p>
+        </motion.p>
       </motion.div>
     </motion.div>
   );

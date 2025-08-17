@@ -57,4 +57,26 @@ export interface OrganizerEvent {
     ticketsSold: number;
     capacity: number;
     image?: string;
-}   
+}
+export interface Artist {
+    id: string;
+    name: string;
+    image: string;
+    genre: string;
+    rating: number;
+    upcomingEvents: number;
+    isLocal: boolean;
+    socialMedia?: {
+        twitter?: string;
+        instagram?: string;
+        facebook?: string;
+    };
+    nextThreeShows?: Performance[];
+
+}export interface Performance {
+    id: string;
+    date: string;
+    venue: string;
+    city: string;
+    ticketUrl?: string;
+}

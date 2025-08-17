@@ -20,8 +20,6 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { User } from '@/types/types';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { SearchModal } from './SearchBar';
 
 const NAV_LINKS = [
   {
@@ -71,7 +69,6 @@ const MobileMenu = ({
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState('menu');
   const constraintsRef = useRef(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -179,28 +176,6 @@ const MobileMenu = ({
                     <>
                       {/* Navigation Links */}
                       <motion.nav className="space-y-3">
-                        {/* Search Button */}
-                        <motion.div
-                          initial={{ x: 50, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          transition={{ delay: 0.1 }}
-                          className="mb-4"
-                        >
-                          <button
-                            onClick={() => setIsSearchOpen(true)}
-                            className="w-full mx-auto flex items-center space-x-3 px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors text-gray-700 dark:text-gray-300"
-                          >
-                            <MagnifyingGlassIcon className="h-5 w-5 text-blue-500" />
-                            <span>Search Events</span>
-                          </button>
-                        </motion.div>
-
-                        {/* Search Modal */}
-                        <SearchModal
-                          isOpen={isSearchOpen}
-                          onClose={() => setIsSearchOpen(false)}
-                        />
-
                         {NAV_LINKS.map((link, index) => (
                           <motion.div
                             key={link.name}

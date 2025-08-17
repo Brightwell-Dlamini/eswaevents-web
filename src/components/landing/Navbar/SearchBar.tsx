@@ -51,7 +51,7 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto"
+          className="fixed inset-0 z-[9999] flex items-start justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto"
           onClick={onClose}
         >
           <motion.div
@@ -60,6 +60,12 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
             exit={{ scale: 0.9, y: 20 }}
             className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 w-full max-w-2xl border border-gray-200 dark:border-gray-700 my-8"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'fixed', // Ensure fixed positioning
+              transform: 'translate(-50%, -50%)', // Proper centering
+              maxHeight: '80vh', // Limit height
+              overflowY: 'auto', // Enable scrolling inside modal
+            }}
           >
             {/* Close button */}
             <motion.button

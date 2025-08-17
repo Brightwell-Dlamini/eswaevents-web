@@ -45,7 +45,7 @@ export const Hero = () => {
         className="relative z-10 pt-28 pb-4 px-4 sm:px-6 lg:px-8 h-full flex flex-col"
         style={{ y: yPos, opacity }}
       >
-        <div className="max-w-7xl mx-auto flex flex-col">
+        <div className="max-w-[90vw] mx-auto flex flex-col w-full">
           <HeroTextSection />
           <EventsCarousel />
         </div>

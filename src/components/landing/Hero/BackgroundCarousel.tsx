@@ -1,4 +1,3 @@
-// components/BackgroundCarousel.tsx
 import { backgroundImages } from '@/lib/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -26,7 +25,7 @@ export const BackgroundCarousel = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.7 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1.5 }}
+                transition={{ duration: 1 }}
                 className="absolute inset-0"
               >
                 <Image
@@ -34,8 +33,11 @@ export const BackgroundCarousel = () => {
                   alt=""
                   fill
                   className="object-cover"
-                  priority
+                  priority={index === 0} // Only prioritize first image
                   quality={80}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/placeholder-bg.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               </motion.div>

@@ -21,8 +21,6 @@ import UserMenu from './Navbar/UserMenu';
 import AuthButtons from './Navbar/AuthButtons';
 import MobileMenu from './Navbar/MobileMenu';
 import { useAuth } from '@/contexts/auth-context';
-import { SearchModal } from './Navbar/SearchBar';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 const Navbar = () => {
   const router = useRouter();
@@ -34,7 +32,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHoveringLogo, setIsHoveringLogo] = useState(false);
   const [unreadNotifs, setUnreadNotifs] = useState(3);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const navRef = useRef(null);
 
@@ -195,22 +192,12 @@ const Navbar = () => {
             </motion.div>
 
             {/* Desktop Navigation */}
+
             <NavLinks />
 
             {/* Right side actions */}
             <div className="flex items-center space-x-4">
               <div className="hidden lg:flex items-center space-x-4">
-                <button
-                  onClick={() => setIsSearchOpen(true)}
-                  className="p-2 rounded-full hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-colors"
-                  aria-label="Search"
-                >
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                </button>
-                <SearchModal
-                  isOpen={isSearchOpen}
-                  onClose={() => setIsSearchOpen(false)}
-                />
                 <LanguageSelector />
                 {user && (
                   <div className="relative">

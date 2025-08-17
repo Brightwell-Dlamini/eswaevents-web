@@ -1,5 +1,5 @@
 
-import { Event, MainEvents, TextVariation, User, } from '@/types/types';
+import { Artist, Event, MainEvents, TextVariation, User, } from '@/types/types';
 
 import {
     MapPinIcon,
@@ -621,4 +621,148 @@ export const AllEvents: MainEvents[] = [
         totalTickets: 500,
         ticketsSold: 466,
     },
+];
+
+export const topArtists: Artist[] = [
+    {
+        id: '1',
+        name: 'Lryikal Busta',
+        image: '/images/artists/busta.jpg',
+        genre: 'Rap',
+        rating: 4.9,
+        upcomingEvents: 3,
+        isLocal: true,
+        socialMedia: {
+            twitter: '@busta',
+            instagram: '@busta'
+        }, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '2',
+        name: 'KrTc',
+        image: '/images/artists/krtc.jpg',
+        genre: 'Hip Hop',
+        rating: 4.8,
+        upcomingEvents: 2,
+        isLocal: false,
+        socialMedia: {
+            twitter: '@KrTc',
+            instagram: '@KrTc'
+        }, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '3',
+        name: 'Uncle Waffles',
+        image: '/images/artists/waffles.jpg',
+        genre: 'Piano',
+        rating: 4.7,
+        upcomingEvents: 1,
+        isLocal: true,
+        socialMedia: {
+            twitter: '@waffles'
+        }, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '4',
+        name: 'Velemseni',
+        image: '/images/artists/velemseni.webp',
+        genre: 'Afro-Soul',
+        rating: 4.6,
+        upcomingEvents: 4,
+        isLocal: true, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '5',
+        name: 'Sands Of Time',
+        image: '/images/artists/sands.jpeg',
+        genre: 'Afro Beats',
+        rating: 4.5,
+        upcomingEvents: 2,
+        isLocal: true, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '6',
+        name: 'Qibho Interlektual',
+        image: '/images/artists/qibho.jpg',
+        genre: 'Hip Hop',
+        rating: 4.4,
+        upcomingEvents: 3,
+        isLocal: true, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '7',
+        name: 'Nothando Hlophe',
+        image: '/images/artists/nothando.jpg',
+        genre: 'Gospel',
+        rating: 4.8,
+        upcomingEvents: 1,
+        isLocal: false, nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    },
+    {
+        id: '8',
+        name: 'Sjava',
+        image: '/images/artists/sjava.jpg',
+        genre: 'Traditional',
+        rating: 4.7,
+        upcomingEvents: 2,
+        isLocal: false,
+
+        nextThreeShows: [
+            {
+                id: 'show1',
+                date: '2023-12-15T20:00:00',
+                venue: 'Club XYZ',
+                city: 'Mbabane'
+            },
+        ]
+    }
 ];

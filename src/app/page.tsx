@@ -7,6 +7,7 @@ import { Hero } from '@/components/landing/Hero';
 import HowItWorks from '@/components/landing/HowItWorks';
 import Navbar from '@/components/landing/Navbar';
 import OrganizerCTA from '@/components/landing/OrganizerCTA';
+import { TopArtistsSection } from '@/components/landing/TopArtistsSection';
 import UpcomingHighlights from '@/components/landing/UpcomingHighlights';
 
 import Head from 'next/head';
@@ -39,6 +40,7 @@ export default function Home() {
       <main>
         <Hero />
         <HowItWorks />
+        <TopArtistsSection />
         <Categories />
         <UpcomingHighlights />
         <ExperienceSection />
