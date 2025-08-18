@@ -72,6 +72,7 @@ export interface Artist {
         facebook?: string;
     };
     nextThreeShows?: Performance[];
+    location?: string
 
 }export interface Performance {
     id: string;

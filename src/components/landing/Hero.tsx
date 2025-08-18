@@ -10,7 +10,7 @@ import { EventsCarousel } from './Hero/EventCarousel';
 
 export const Hero = () => {
   const { scrollY } = useScroll();
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
+  const [, setScrollDirection] = useState<'up' | 'down'>('down');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,11 +27,6 @@ export const Hero = () => {
   }, []);
 
   const yPos = useTransform(scrollY, [0, 300], [0, -100]);
-  const opacity = useTransform(
-    scrollY,
-    [0, 200],
-    [1, scrollDirection === 'down' ? 0.3 : 1]
-  );
 
   if (!mounted) return null;
 
@@ -40,7 +35,7 @@ export const Hero = () => {
       <BackgroundCarousel />
       <div className="absolute inset-0 z-0 bg-black/20" />
 
-      <motion.div className="relative z-10 h-full" style={{ y: yPos, opacity }}>
+      <motion.div className="relative z-10 h-full" style={{ y: yPos }}>
         {/* Hero text section with max height and optional overflow */}
         <div className="pt-28 px-4 sm:px-6 lg:px-8 max-w-[90vw] mx-auto h-[calc(100%-200px)]">
           <HeroTextSection />

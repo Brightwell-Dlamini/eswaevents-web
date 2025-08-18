@@ -642,7 +642,8 @@ export const topArtists: Artist[] = [
                 venue: 'Club XYZ',
                 city: 'Mbabane'
             },
-        ]
+        ],
+
     },
     {
         id: '2',
@@ -745,7 +746,7 @@ export const topArtists: Artist[] = [
                 venue: 'Club XYZ',
                 city: 'Mbabane'
             },
-        ]
+        ], location: "South Africa"
     },
     {
         id: '8',
@@ -764,5 +765,6 @@ export const topArtists: Artist[] = [
                 city: 'Mbabane'
             },
         ]
+        , location: "South Africa"
     }
 ];
